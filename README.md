@@ -196,7 +196,7 @@ Create a function `getLeads()` and execute the request.
 ```typescript
   async getLeads(): Promise<Leadqueryresponse> {
       return await LeadApi.queryleadserviceLead().execute({
-          destinationName: process.env.DESTINATION_NAME
+          destinationName: process.env.DESTINATION_NAME || ''
       }).catch(error => {
           throw new HttpException(`Failed to get leads - ${error.message}`, 500);
       });
@@ -237,7 +237,7 @@ First we will complete the `createCopyOfLead` function in the `LeadService`.
         // Read complete Lead from LeadApi
         const readLeadResponse = await LeadApi
             .readleadserviceLead(id)
-            .execute({ destinationName: process.env.DESTINATION_NAME })
+            .execute({ destinationName: process.env.DESTINATION_NAME || '' })
             .catch(error => {
                 throw new HttpException(`Failed to retrieve complete lead - ${error.message}`, 500);
             });
@@ -255,7 +255,7 @@ First we will complete the `createCopyOfLead` function in the `LeadService`.
             account: originalLead.account,
             businessArea: originalLead.businessArea,
             contacts: originalLead.contacts
-        }).execute({ destinationName: process.env.DESTINATION_NAME })
+        }).execute({ destinationName: process.env.DESTINATION_NAME || '' })
         .catch(error => {
             throw new HttpException(`Failed to create copy of lead - ${error.message}`, 500);
         });
