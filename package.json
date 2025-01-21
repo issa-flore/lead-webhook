@@ -25,6 +25,9 @@
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@sap-cloud-sdk/openapi-generator": "^3.25.0",
+    "@sap/xsenv": "^5.4.0",
+    "@sap/xssec": "3.6.1",
+    "passport": "^0.7.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
