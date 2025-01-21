@@ -1,4 +1,4 @@
-import { Controller, Get, Post} from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Post} from '@nestjs/common';
 import { LeadService } from './lead.service';
 import { Leadqueryresponse } from 'services/SalesSvcCloudV2_lead';
 
@@ -12,7 +12,15 @@ export class LeadController {
     }
 
     @Post()
-    createCopyOfLead(){
-      
+    async createCopyOfLead(@Body() body){
+        try {
+            console.log("Incoming Lead id:");
+            console.log(body.data?.currentImage?.id);
+            await this.leadService.createCopyOfLead(body.data?.currentImage?.id);
+            return { status: 'success' };
+        } catch (error) {
+            console.error(error);
+            throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 };
