@@ -64,7 +64,7 @@ The base route currently returns 'Hello World', we will add the route where we'l
 
 Create a new controller:
 ```bash
-  nest g controller business-partner
+  nest g controller lead
 ```
 This creates a new folder and controller under `src/lead`.  
 We will add a GET and POST route to this controller:  
