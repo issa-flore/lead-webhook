@@ -4,7 +4,9 @@
 We will create a webhook for Leads from the Sales Cloud and Service Cloud v2.
 We build upon the steps described in the SAP Cloud SDK javascript "Getting Started" Tutorial to create a complete flow.  
 We will create a webhook that will make a copy of a lead when it's status changes to 'Lost'.  
-https://sap.github.io/cloud-sdk/docs/js/tutorials/getting-started/set-up-dev-environment
+https://sap.github.io/cloud-sdk/docs/js/tutorials/getting-started/set-up-dev-environment  
+
+__The result after every step can be found in a branch named after that completed step.__
 
 
 
