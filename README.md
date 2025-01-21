@@ -124,7 +124,7 @@ Login using the credentials for your subaccount.
 
 In your project create a `.env` file under the root of the project containing:  
 ```bash
-  DESTINATION_NAME:SSCV2
+  DESTINATION_NAME=SSCV2
   LEAD_COPY_TEXT_ADDITION=Webhook v1
 ```  
 Import the `@nestjs/config` package:  
