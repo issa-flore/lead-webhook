@@ -196,7 +196,7 @@ Create a function `getLeads()` and execute the request.
 ```typescript
   async getLeads(): Promise<Leadqueryresponse> {
       return await LeadApi.queryleadserviceLead().execute({
-          destinationName: process.env.DESTINATION_NAME
+          destinationName: process.env.DESTINATION_NAME || ''
       }).catch(error => {
           throw new HttpException(`Failed to get leads - ${error.message}`, 500);
       });
@@ -231,13 +231,13 @@ To deploy follow the steps in the section `Deploy to Cloud Foundry`.
 
 ## 5. Handle POST endpoint  
 ### Service
-First we will complete the `createCopyOfLead` function in the `LeadService`.  
+First we will create the `createCopyOfLead` function in the `LeadService`.  
 ```typescript
   async createCopyOfLead(id): Promise<Leadfile> {
         // Read complete Lead from LeadApi
         const readLeadResponse = await LeadApi
             .readleadserviceLead(id)
-            .execute({ destinationName: process.env.DESTINATION_NAME })
+            .execute({ destinationName: process.env.DESTINATION_NAME || '' })
             .catch(error => {
                 throw new HttpException(`Failed to retrieve complete lead - ${error.message}`, 500);
             });
@@ -246,16 +246,16 @@ First we will complete the `createCopyOfLead` function in the `LeadService`.
         console.log(originalLead);
 
         // Determine fields for Lead Copy
-        const copyLeadName = originalLead.name + ' ' + process.env.LEAD_COPY_TEXT_ADDITION;
+        const copyLeadName = originalLead?.name + ' ' + process.env.LEAD_COPY_TEXT_ADDITION;
 
         // Create Lead Copy using LeadApi
         const createdCopyLead = await LeadApi.createleadserviceLead({
             name: copyLeadName,
-            startFrom: originalLead.dueUntil,
-            account: originalLead.account,
-            businessArea: originalLead.businessArea,
-            contacts: originalLead.contacts
-        }).execute({ destinationName: process.env.DESTINATION_NAME })
+            startFrom: originalLead?.dueUntil,
+            account: originalLead?.account,
+            businessArea: originalLead?.businessArea,
+            contacts: originalLead?.contacts
+        }).execute({ destinationName: process.env.DESTINATION_NAME || '' })
         .catch(error => {
             throw new HttpException(`Failed to create copy of lead - ${error.message}`, 500);
         });
@@ -372,9 +372,10 @@ The autoflow is what will effectively trigger the entire flow.
 Navigate back to `Settings>All Settings` and search for `Autoflow`.  
  Configure it as shown in the image below, the check on `name contains` can be changed as you wish.  
 
+![Screenshot of Autoflow Configuration](img/autoflow.png)
+
 Now you have a complete flow and are able to test by creating a Lead with a name containing the text you mentioned in the Autoflow.  
 When changing the status for that Lead to Declined the webhook should be triggered and another Lead should appear after refreshing.
 ## Authors
 
 - [@issa-flore](https://www.github.com/issa-flore)
-
