@@ -372,9 +372,10 @@ The autoflow is what will effectively trigger the entire flow.
 Navigate back to `Settings>All Settings` and search for `Autoflow`.  
  Configure it as shown in the image below, the check on `name contains` can be changed as you wish.  
 
+![Screenshot of Autoflow Configuration](img/autoflow.png)
+
 Now you have a complete flow and are able to test by creating a Lead with a name containing the text you mentioned in the Autoflow.  
 When changing the status for that Lead to Declined the webhook should be triggered and another Lead should appear after refreshing.
 ## Authors
 
 - [@issa-flore](https://www.github.com/issa-flore)
-
